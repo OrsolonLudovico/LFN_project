@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{graphicx}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{titling}
+\setlength{\droptitle}{-13em}
+\usepackage{enumitem}
+\setlist[description]{leftmargin = 0mm}
+
+\title{An analysis of the \textit{friendship paradox} on different type of social networks}
+\author{Ippolito Lavorati, Ludovico Orsolon, Patrizia Stefani}
+\date{November 2024}
+
+
+\begin{document}
+\maketitle
+\section{Motivations}
+In recent decades, social media have become increasingly popular, transforming the way people connect and interact and is an integral part of our life. Therefore, examining these platforms closely from a graph network perspective can provide valuable insights into the social dynamics they enclose.\\
+Among the vast landscape of social networks, the  platforms \textit{Facebook}, \textit{LinkedIn}, and \textit{YouTube} were selected for this analysis, due to their accessible datasets and their widespread popularity.\\
+One particularly interesting phenomenon that was decided to explore is the \textit{friendship paradox}, a concept formulated by sociologist Scott L. Feld, which suggests that, "on average, an individual's friends have more friends than the individual does." \cite{friendship_paradox}.
+This analysis will investigate how each platform reflects this paradox, aiming to understand the extent to which the phenomenon appears across these networks.
+
+\subsection{Datasets}
+We’ve chosen three graphs, each one representing the friendship in a different social network:
+For Youtube we chose the dataset present at \url{https://snap.stanford.edu/data/com-Youtube.html} which contains information about the networks of followers on Youtube communities, for Linkedin we chose the dataset present at \url{https://networkrepository.com/soc-linkedin.php} which contains the user-to-user connections while for Facebook we chose the dataset at \url{https://networkrepository.com/socfb-wosn-friends.php} which contains a network of users' friendships.\\
+We think that Youtube, Linkedin and Facebook are different enough in nature to have different features between each other; for example we expect that a “popular user” on youtube will have many more “friends” than the average one, while “popular users” on facebook will have less friends in proportion due to the fact that often unpopular users are still friends with a fair amount of people (like real life friends and family). We define a popular node (and consequently a popular user) a node that has more neighbors than the average number of neighbors of its neighbors.
+
+\section{Methods}
+The program responsible for the analysis will be written in \textit{Python} using the \textit{NetworkX} library (and other ones, if necessary), which contains different utilities to deal with graphs. The files containing edge information, downloaded from the datasets, will serve as inputs to our programs. \\
+We aim to parallelize the process to improve performances but, if that will pose too much of a challenge, we will revert to a serialized approach.\\
+Initially, we will try to execute the algorithm exactly; however, if we discover that the graph is too large and processing requires excessive time and memory consumption, we will try to use approximated algorithms. Since there seem to be a huge number of edges (greater than two million) the exact computation could in fact very well be challenging. However, since each edge is represented by two integers, the system should be able to read the data quickly. We will carefully test the performance of our program before deciding definitely.
+
+\section{Intended experiments}
+We will conduct several experiments focused on analyzing graph structures representing friendships or follows (depending on the social networks analyzed): we aim at identifying key patterns among different types of social networks and also their differences. To do this we will need to compute some features of the nodes of each graph as well as features of the whole graph.\\
+We will use the \textit{degree} of the nodes and the degree of their neighbors to verify the friendship paradox and also check if the paradox is more accentuated in a social network than in another (i.e. the difference in “friends” between popular and unpopular users is greater or lower in proportion). We expect that the paradox will be “more accentuated” in Youtube and Linkedin than in Facebook for example (as explained before). We will also use the degree to understand which nodes correspond to popular users: we define a \textit{popular node} (and consequently a popular user) a node that has more neighbors than the average number of neighbors of its neighbors.\\
+We will compute other node and graph features such as \textit{clustering coefficient} and different types of centralities such as \textit{closeness centrality}, \textit{PageRank centrality} and \textit{betweenness centrality}. This will allow us to understand if some of those measures correlate with the “popularity” of a node or, in the case of graph measures, correlate with having “a more pronounced” friendship paradox. If the computation of those measures will prove too computationally intensive we will result in methods such as sampling to reduce the time needed providing an approximated result\\
+We will compare our results with \textit{random graphs} to check whether the paradox applies even in networks that do not represent friendships.
+
+\section{Machine specifications}
+\begin{itemize}
+    \item 8 cores CPU, 4.8 Ghz sustained clock while boosting
+    \item 32 GB of 3600 Mhz 
+    \item SSD $\approx$ 3000 MB/s in read and write
+\end{itemize}
+\section*{Contributions}
+In this first project proposal part we more or less worked together, most of the time was spent doing organization, sharing ideas and compiling this report so the contribution of each member was approximately $\frac{1}{3}$.
+\begin{description}[font=\normalfont\itshape]
+    \item[Lavorati Ippolito:] Helped writing the report, helped finding the datasets and assess their quality, research and presented ideas, some of which were discarded;
+    \item[Orsolon Ludovico:] Helped writing the report, gave the main idea about the friendship paradox, formulated of the hypothesis and researched about experiments to test it;
+    \item[Stefani Patrizia:] Helped writing the report, helped finding the datasets, research on the methods to implement the experiments and relative python functions.
+\end{description}
+\begin{thebibliography}{9}
+\bibitem{friendship_paradox}
+Scott L. Feld (1991) \emph{Why Your Friends Have More Friends
+than You Do}, The University of Chicago.
+\end{thebibliography}
+\end{document}
+
