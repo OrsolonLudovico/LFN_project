@@ -1,0 +1,2 @@
+- pip install networkx
+- add degree of seperation
