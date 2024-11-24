@@ -6,9 +6,9 @@ import os
 if __name__ == "__main__":
 
     script_dir  = os.path.dirname(os.path.abspath(__file__))
-    #data_path   = os.path.join(script_dir, "../datasets/TestGraph.txt")
+    data_path   = os.path.join(script_dir, "../datasets/TestGraph.txt")
     #data_path   = os.path.join(script_dir, "../datasets/linkedin.edges")
-    data_path   = os.path.join(script_dir, "../datasets/facebook.edges")
+    #data_path   = os.path.join(script_dir, "../datasets/facebook.edges")
     #data_path   = os.path.join(script_dir, "../datasets/youtube.edges")
 
 

@@ -108,7 +108,7 @@ def get_closeness(G, progress=False):
 '''
 
 #Returns a vector of touples name of the node - clustering coefficient
-#Using the progress bar doesn't impact performances too much
+#Using the progress bar doesn't impact performances too much, doesn't need to be approximated, calculates the coefficient for any graph
 def get_clustering_coefficient(G, progress = False):
 
     if progress == True:
