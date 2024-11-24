@@ -1,2 +1,3 @@
 *.edges
 *.csv
+__pycache__
