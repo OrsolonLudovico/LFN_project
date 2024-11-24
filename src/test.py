@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     #This will put the graph from the path
     #G = load_graph(data_path, progress= True)
-    G = load_graph(data_path)
+    G = load_graph(data_path, progress=True)
 
     #Draw the graph (not feasable with large graphs)
     #draw_graph(G, progress= True)
@@ -23,26 +23,17 @@ if __name__ == "__main__":
     #degrees = get_degrees(G, progress= True)
     #print(degrees)
 
-    # Betweenness 
-    betweenness = get_betweenness(G)
+    # Betweenness (unfeasable with lage graphs exactly)   #2 min with 0.005 #35 min with 0.005
+    #betweenness, k = get_betweenness(G, proportion = 0.005)
     #print(betweenness)
+    
 
     # PageRank
-    page_rank = get_pagerank(G, True)
+    #page_rank = get_pagerank(G, True)
     #print(page_rank)
-
-    # Closeness Centrality
-    closeness = get_closeness(G, True)
+    # Closeness Centrality (unfeasable with large graphs, need to figure out how to approximate)
+    #closeness = get_closeness(G, True)
     #print(closeness)
 
-    # Graphlets (triads)
-    graphlet = get_graphlets(G, True)
-    #print(graphlet)
-
-
-    #Some ideas:
-    #Some centrality measures (betweenness, PageRank, closeness ...) 
-    #Graphlets 
-    #Random Graphs
-
-    #Add everything togheder in a .csv file
+    cls_coef = get_clustering_coefficient(G, progress=True)
+    print(cls_coef)
