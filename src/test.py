@@ -1,8 +1,10 @@
 #We have to find a way to translate the graphs into rapresentations with networkx
 from utility_functions import *
 from networkx import *
-import os
 from data_manager import *
+from graph.GraphAnalyzer import GraphAnalyser;
+from fileio.file_helpers import get_file_path;
+import os
 
 if __name__ == "__main__":
 
@@ -37,6 +39,7 @@ if __name__ == "__main__":
 
     #clustering_coef = get_clustering_coefficient(G, progress=True)
     #print(cls_coef)
+
 
 ##WARNING change G to the graph you want before testing
 #TEST

@@ -6,7 +6,6 @@ import scipy as sp
 # Draws the graph 
 def draw_graph(G, progress = False):
     #show the progress bar if progress = true
-
     if progress == True:
         print("\nDrawing graph")
         plt.figure(figsize=(8, 8))

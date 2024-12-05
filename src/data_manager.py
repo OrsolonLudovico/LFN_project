@@ -1,14 +1,14 @@
 import networkx as nx
-from tqdm import tqdm
 import scipy as sp
-import os
-from utility_functions import *
 import pandas as pd # to use the tables
+from tqdm import tqdm
+from utility_functions import *
+from fileio.file_helpers import get_file_path;
 
 #Creates the file by adding just the row names. The name should cointain .csv
 def create_basic_table(G, filename):
     df = pd.DataFrame(index = G.nodes())   #Put the names of the nodes as columns indexes
-    save_path = "../results/" + filename
+    save_path = get_file_path(filename, "results")
     df.to_csv(save_path)                    #Save the table in a .csv
     print(filename + " table created")
 
