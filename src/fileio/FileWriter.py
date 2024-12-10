@@ -11,16 +11,17 @@ class FileWriter :
         pass
 
     #Creates the file by adding just the row names. The name should cointain .csv
-    def create_basic_table(self, G):
+    def create_basic_table(self, G, extra_title=""):
+        self.file_path = get_file_path(self.filename + extra_title + ".csv", "results")
         df = pd.DataFrame(index = G.nodes())   #Put the names of the nodes as columns indexes
         df.to_csv(self.file_path)                   #Save the table in a .csv
         print(self.filename + " table created")
 
-    def add_column(self, colname, values):
+    def add_column(self, colname, values, extra_title):
         #filepath is the path of the file to add the column to
         #colname is the name of teh columns to add
         #values is a vector of tuples with name_of_the_node - value. The names must be the same as the names of the rows
-
+        self.file_path = get_file_path(self.filename + extra_title + ".csv", "results")
         print("Adding " + colname + " to " + self.file_path)
         df = pd.read_csv(self.file_path, index_col=0) #0 means that the first column is the row names
         df.index = df.index.astype(str)
@@ -35,9 +36,3 @@ class FileWriter :
         df[colname] = df.index.map(dict_values)
         df.to_csv(self.file_path)
         print(self.file_path + " updated")
-    
-    def write_file(self, G, data, extra_title = ".csv"):
-        self.file_path = get_file_path(self.filename + extra_title, "results")
-        self.create_basic_table(G);
-        for colname, values in data.items():
-            self.add_column(colname, values)

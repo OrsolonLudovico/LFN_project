@@ -1,21 +1,24 @@
 graph:
-  input_file: "facebook"  # File di input per il grafo
-  extension: "edges"
-
+  input_file: "TestGraph"  # File di input per il grafo
+  extension: "txt" #estensione del grafo
+create_new_file : False
+create_new_file_random_graph : False
+random_graph : True
+only_random_graph : False
 analysis:
   - name: "Degree"
     method: "get_degrees"
     proportion: null
     progress: True
-  # - name: "Betweenness Centrality"
-  #   method: "get_betweenness" 
-  #   proportion: 0.02 
-  #   progress: False
+  - name: "Betweenness Centrality"
+    method: "get_betweenness" 
+    proportion: null 
+    progress: False
   - name: "Page Rank"
     method: "get_pagerank"
     proportion: null
     progress: True
-  - name: "Clustering Coefficient"
-    method: "get_clustering_coefficient"
-    proportion: 0.2
+  - name: "Friendship paradox"
+    method: "get_friendship_paradox"
+    proportion: null
     progress: True
