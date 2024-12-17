@@ -1,8 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import linregress
-from scipy.stats import spearmanr, kendalltau
+from scipy.stats import linregress, spearmanr, kendalltau
 
 def analyze_friendship_paradox_from_csv(file_path):
     # Reading CSV files
@@ -10,13 +9,10 @@ def analyze_friendship_paradox_from_csv(file_path):
     data.index = data.index.astype(str)  # Normalize the first column to strings
     data.columns = ['degree', 'betweenness centrality', 'pagerank', 'friendship paradox']
 
-    # Converti in numerico
+    # Convert to numeric
     data = data.apply(pd.to_numeric, errors='coerce')
 
-    print(data)
-
-
-    # Filtra valori validi
+    # Filter valid values
     valid_indices = ~data.isnull().any(axis=1)  # Rimuove righe con NaN
     data = data[valid_indices]
 
