@@ -4,6 +4,7 @@ import pandas as pd # to use the tables
 from tqdm import tqdm
 from utility_functions import *
 from fileio.file_helpers import get_file_path;
+import os
 
 class FileWriter :
     def __init__(self, filename):
@@ -23,6 +24,12 @@ class FileWriter :
         #values is a vector of tuples with name_of_the_node - value. The names must be the same as the names of the rows
         self.file_path = get_file_path(self.filename + extra_title + ".csv", "results")
         print("Adding " + colname + " to " + self.file_path)
+        
+        if not os.path.exists(self.file_path):
+            print(f"File {self.file_path} not found, creating a new file...")
+            df = pd.DataFrame(index=[str(k) for k, v in values])  # Use nodes as index
+            df.to_csv(self.file_path)
+
         df = pd.read_csv(self.file_path, index_col=0) #0 means that the first column is the row names
         df.index = df.index.astype(str)
         dict_values = dict(values)                                    #Keep them as strings!!!!!!!!!!!!!!! Very important
@@ -30,7 +37,7 @@ class FileWriter :
 
         missing_keys_n = len(dict_values.keys()) - len(df.index)
         if missing_keys_n != 0:
-            print("Missing " + missing_keys_n + " keys error in" + self.file_path + " exiting: ")
+            print(f"Missing {missing_keys_n} keys error in {self.file_path}, exiting.")
             exit()
 
         df[colname] = df.index.map(dict_values)
