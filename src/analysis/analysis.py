@@ -12,9 +12,15 @@ def analyze_friendship_paradox_from_csv(file_path):
     # Convert to numeric
     data = data.apply(pd.to_numeric, errors='coerce')
 
+    # Missing data management
+    data.dropna(inplace=True)
+
     # Filter valid values
-    valid_indices = ~data.isnull().any(axis=1)  # Rimuove righe con NaN
-    data = data[valid_indices]
+    #valid_indices = ~data.isnull().any(axis=1)  # Rimuove righe con NaN
+    #data = data[valid_indices]
+
+    # Standarditazion (optional)
+    data = (data - data.mean()) / data.std()
 
     # Extraction of the main columns
     degrees = data['degree'].values
@@ -78,7 +84,7 @@ def visualize_data(degrees, betweenness, pagerank, fship_score):
 # Example
 if __name__ == "__main__":
     # Path CSV file containing data
-    file_path = "results/TestGraph_random_graph.csv"  # Sostituisci con il percorso reale del file
+    file_path = "results/TestGraph_random_graph.csv"  
 
     # Analysis of the friendship paradox
     analyze_friendship_paradox_from_csv(file_path)
