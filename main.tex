@@ -31,23 +31,23 @@ We think that these three social networks are different enough in nature to have
 
 \section{Methods}
 The program responsible for the analysis will be written in \textit{Python} using mostly the \textit{NetworkX} library, which contains different utilities to deal with graphs. The files containing edge information, downloaded from the datasets, will serve as input to our programs. \\
-The exact computation of some features in graphs of this size is unfeasible, we will use approximation for features such as the betwenness centrality; the program will be developed collaboratively on GitHub.
+The exact computation of some features in graphs of this size is unfeasible; hence we will use approximation for features such as the betwenness centrality; the program will be developed collaboratively on GitHub.
 
 \subsection{The fship\_score}
-We decided to encapsulate the concept of the frienship score in a measure that we called \textit{fship\_score}, computed for each node. 
+We decided to encapsulate the concept of the friendship score in a measure that we called \textit{fship\_score}, computed for each node. 
 The \textit{fship\_score} is defined as:
 \\\[
 \textit{\textbf{fship\_score(u)}} = \deg(u) \cdot \left( \frac{\sum_{v \in N(u)} \deg(v)}{\deg(u)} \right)^{-1} =
 \frac{\deg(u)^{2}}{\sum_{v \in N(u)} \deg(v)}
 \]\\
-That is, the degree of the considered node divided by the average degree of its neighbors. Intuitevely if the score is less or eaual to 1 the frienship paradox is true for the node, otherwise we consider it an outlier
+That is, the degree of the considered node divided by the average degree of its neighbors. Intuitevely if the score is less or equal to 1 the friendship paradox is true for the node, otherwise we consider it an outlier.
 
 
 \section{Intended experiments}
 We will conduct several experiments focused on analyzing graph structures representing friendships or follows aiming at identifying key patterns among different types of social networks and also their differences.
 We will compute other node and graph features and use them to understand if some of those measures correlate with the 'popularity' of a node.
 We will compare our results with \textit{random graphs} to check whether the paradox applies even in networks that do not represent friendships. \\
-To understand if the \textit{fship\_value} is correlated with node features and to check how similar to the random graph we are we will employ statistical statistical tests, wich ones exactly is still to be understood properly
+To understand if the \textit{fship\_value} is correlated with node features and to check how similar to the random graph we are we will employ statistical tests, the exact tests to be used is still to be understood properly
 
 \section{What changed from deadline 1?}
 We understood better what we can and should do to analyze the graphs and also prepared a program to compute and group the results 
