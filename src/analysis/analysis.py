@@ -51,7 +51,7 @@ def analyze_correlation(degrees, betweenness, pagerank, fship_score, clustering)
         # Spearman correlation
         spearman_corr, spearman_p = spearmanr(fship_score, metric_values)
 
-        # Kendall Tau
+        # Pearson correlation
         pearson_corr, pearson_p = pearsonr(fship_score, metric_values)
 
         # Print results
