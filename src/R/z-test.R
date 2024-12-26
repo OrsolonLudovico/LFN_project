@@ -1,7 +1,7 @@
 #This script performs the z-test on two files on the "Frienship paradox column"
 name1 <- "../../results/facebook.csv"
 df1 <- read.csv(name1)
-name2 <- "../../results/linkedin.csv"
+name2 <- "../../results/youtube.csv"
 df2 <- read.csv(name2)
 
 v1 <- df1[["Friendship.paradox"]]
