@@ -1,3 +1,6 @@
+#This script calculates the rateo of "outliers" in a dataset
+# number_of_nodes_with_fp_score_>_1 / total number of nodes
+
 #name <- "../results/youtube.csv" 
 name <- "../../results/random/TestGraph_random_graph.csv"
 df <- read.csv(name)
