@@ -1,3 +1,5 @@
 *.edges
 *.csv
 __pycache__
+*.Rhistory
+*.RData
