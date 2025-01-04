@@ -9,7 +9,7 @@
 \usepackage{amsfonts}
 \usepackage{float}
 
-\title{An analysis of the \textit{friendship paradox} on different type of social networks}
+\title{An analysis of the \textit{friendship paradox} on different types of social networks}
 \author{Ippolito Lavorati, Ludovico Orsolon, Patrizia Stefani}
 \date{November 2024 - January 2025}
 
@@ -33,12 +33,24 @@ Furthermore, since the datasets utilized are huge, we designed a smaller graph t
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{TestGraph.png}
-    \caption{Test graph}
+    \caption{\textit{TestGraph}}
     \label{fig:testgraph}
 \end{figure}
-We employed RandomGraphs, one for each dataset in order to better verify statistical analysis. The ranfom graphs are computed................................................. and can be found at....................
-
-Graph features: ----------------put a list of every graph and how many nodes/ edges it has, maybe average degree or smth.... Also for random graphs
+We created a random graph for each dataset in order to better verify the statistical analysis. The random graphs are constructed with the same number of nodes and edges of the real graph utilized using the \textit{gnm\_random\_graph} function from the \textit{NetworkX} library.\\
+Generating a single random graph for each social network is certainly not optimal; we would need many random graphs to better estimate random features. We chose not to do so for the sake of computational time: computing even a single measure on our machines was a long process, so we decided to employ our time trying to understand results rather than computing tons of measures.\\
+The graphs employed, as well as the respective random graphs are characterized by the following properties:
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& TestGraph & Facebook & Linkedin & Youtube \\ \hline
+Nodes & $22$ & $63\,731$ & $6\,726\,011$ & $1\,134\,890$\\ \hline
+Edges & $34$ & $817\,090$ & $19\,360\,690$ & $2\,987\,624$ \\ \hline
+Avg Degree & 3.09 & 25.64 &  5.76 & 5.26 \\ \hline 
+\end{tabular}
+\caption{Some graphs' properties}
+\end{table} 
+%----------------put a list of every graph and how many nodes/ edges it has, maybe average degree or smth.... Also for random graphs
 
 \section{Methods}
 The program responsible for the analysis is written in \textit{Python} using the \textit{NetworkX} library for graphs, the \textit{tqdm} library to keep track of long processes through progress bars, \textit{pyplot} from \textit{matplotlib} to visualize information, \textit{pandas} to deal with csv files. The files containing edge information, downloaded from the datasets, will serve as input to our programs.Some statistical analysis were also performed in R
@@ -61,8 +73,8 @@ That is, the degree of the considered node divided by the average degree of its 
 %To understand if the \textit{fship score} is correlated with node features and to check how similar it is to the random graph, we will employ statistical tests. The exact tests to be used are still to be determined.
 
 \section{Experiments}
-\subsection{Verifyng the \textit{frienship paradox}}
-First of all we need to check if the \textit{friendship paradox} is present in our datasets: below a table with the proportion of outliers is reported (\textit{number of nodes with $fship_score > 1$ $/$ $total number of nodes$}), this table contains results from one of our R scripts. 
+\subsection{Verifying the \textit{friendship paradox}}
+First of all we need to check if the \textit{friendship paradox} is present in our datasets: below a table with the proportion of outliers is reported (\textit{number of nodes with $fship\_score > 1$ $/$ $total\_number\_of\_nodes$}), this table contains results from one of our R scripts. 
 \begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
@@ -75,7 +87,7 @@ Random & 0.3636 & 0.4086 & 0.3556 & 0.3544 \\ \hline
 \end{table} 
 \\
 
-We can immediately see that the \textit{frienship paradox} is true for both real and random graphs but we can also see that it is more accentuated on the real graphs than on the random ones: this suggests that the \textit{friendship paradox} is a characteristic of real "social network" graphs even though it can be also present in random graphs to some degree. Furthermore, we can see that the paradox is more accentuated on Youtube and less on Linkedin as expected. From the data, the random graphs seem to have a different proportion of outliers than the real graphs (H1), to verify this hypotesis we performed the z-test on the values in the above table using [real graph - random corresponding graph] pairs.
+We can immediately see that the \textit{frienship paradox} is true for both real and random graphs but we can also see that it is more accentuated on the real graphs than on the random ones: this suggests that the \textit{friendship paradox} is a characteristic of real "social network" graphs even though it can be also present in random graphs to some degree. Furthermore, we can see that the paradox is more accentuated on Youtube and less on Linkedin as expected. From the data, the random graphs seem to have a different proportion of outliers than the real graphs (H1), to verify this hypothesis we performed the z-test on the values in the above table using [real graph - random corresponding graph] pairs.
 \[z = \frac{p_1 - p_2}{\sqrt{p_{comb} (1 - p_{comb}) \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}}\]
 where:
 \[n_i = \textit{number of nodes of i}\]
@@ -97,10 +109,16 @@ Real vs Random & 0.5 & 0 & 0 & 0\\ \hline
 \\
 The p-values are all zero (reject \(H_0\)) except for the artificial graph suggesting that the proportion of outliers are different between the random and the real graphs, this means that the \textit{fship\_score} is probably not due to randomness. We also compared datasets against each other to see if there are common proportions between them, but the p-values are zero for all combinations (facebook-Linkedin, Linkedin-Youtube and Youtube-Facebook) so we conclude that such correlation doesn't exists.
 
+\subsection{\textit{friendship paradox} correlations}
 
+/////////////////////////////////////////IPPOLITO
 
-
-
+\section{Possible improvements}
+With more powerful computational machines and more time there are a few ideas that could be developed to expand on this paper results:
+\begin{itemize}
+    \item Generating many random graphs for each social network would provide a better approximation of the randomly-generated features and also, generating other types of random graphs (Chung-Lu model for example), could highlight new correlations we may have missed.
+    \item An obvious improvement could be simply using more data, for example finding new graphs from other social networks, we could also check if in different graphs obtained from the same social network we find significative differences on \textit{fship\_score}.
+\end{itemize}
 
 \section{Machine specifications}
 \begin{itemize}
