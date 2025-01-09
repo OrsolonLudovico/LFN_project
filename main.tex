@@ -50,7 +50,6 @@ Avg Degree & 3.09 & 25.64 &  5.76 & 5.26 \\ \hline
 \end{tabular}
 \caption{Some graphs' properties}
 \end{table} 
-%----------------put a list of every graph and how many nodes/ edges it has, maybe average degree or smth.... Also for random graphs
 
 \section{Methods}
 The program responsible for the analysis is written in \textit{Python} using the \textit{NetworkX} library for graphs, the \textit{tqdm} library to keep track of long processes through progress bars, \textit{pyplot} from \textit{matplotlib} to visualize information, \textit{pandas} to deal with csv files. The files containing edge information, downloaded from the datasets, will serve as input to our programs.Some statistical analysis were also performed in R
@@ -65,12 +64,6 @@ The \textit{fship\_score} is defined as:
 \]\\
 That is, the degree of the considered node divided by the average degree of its neighbors. Intuitively if the score is less or equal to 1 the friendship paradox is true for the node, otherwise we consider it an outlier.
 
-
-%\section{Intended experiments}
-%We will conduct several experiments focused on analyzing graph structures representing friendships or follows aiming at identifying key patterns among different types of social networks and also their differences.
-%We will compute other node and graph features and use them to understand if some of those measures correlate with the 'popularity' of a node.
-%We will compare our results with \textit{random graphs} to check whether the paradox applies even in networks that do not represent friendships. \\
-%To understand if the \textit{fship score} is correlated with node features and to check how similar it is to the random graph, we will employ statistical tests. The exact tests to be used are still to be determined.
 
 \section{Experiments}
 \subsection{Verifying the \textit{friendship paradox}}
@@ -111,10 +104,15 @@ The p-values are all zero (reject \(H_0\)) except for the artificial graph sugge
 
 \subsection{\textit{Friendship paradox} correlations}
 
-The \textit{friendship paradox} reveals intriguing insights into the structural dynamics of social networks. To explore this phenomenon, we analyzed three key metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient}, each of which offers a unique perspective on how the paradox manifests. 
-The results varied across different social networks, as shown in \textit{Table 4}, reflecting their distinct structures. \\
-
-\begin{table}[ht]
+It's important to check if the \textit{frienship paradox} is related to some other metric of the graph. We tried to analyze three key metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient} using:
+\begin{itemize}
+    \item \textit{Linear regression} provides a clear model of how the friendship paradox score varies with each metric, offering insights into the strength and direction of these associations.
+    \item \textit{Pearson correlation} measures the degree of linear relationships
+    \item \textit{Spearman correlation} assesses monotonic associations, uncovering potential nonlinear trends.
+\end{itemize}
+ We also tried to test \textit{closeness} and \textit{betweenness centrality} but computing these metrics (even approximated) for large-scale networks such as Facebook, Linkedin, and Youtube requires too much computational power, unaviable to us; we hence marked them as unfeasible.\\
+The results are shown in the following table \\
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -134,14 +132,14 @@ The results varied across different social networks, as shown in \textit{Table 4
     \caption{Metrics correlation}
 \end{table} 
 
-In Facebook, PageRank showed the strongest correlation with the friendship paradox, underscoring the influence of highly connected hubs. Degree also showed a significant positive correlation, reinforcing its central role in the paradox, while clustering coefficient had minimal negative correlation, suggesting that local cohesion has little impact. \\
-For Linkedin, PageRank again emerged as the most significant factor, with stronger correlations than those observed in Facebook. Degree correlations were also substantial, reflecting Linkedin's emphasis on direct professional connections. The clustering coefficient showed a slightly more negative correlation, but remained a secondary factor. \\ 
-In youtube, PageRank remained a strong driver of the friendship paradox, although its correlation was weaker than Facebook and Linkedin. Degree correlations were less pronounced, indicating different dynamics shaped by content creation and consumption. The clustering coefficient showed an almost negligible correlation, underscoring its limited relevance in this network. \\
+In \textbf{Facebook}, \textit{PageRank} showed the strongest correlation with the \textit{friendship paradox}, underscoring the influence of highly connected hubs. \textit{Degree} also showed a significant positive correlation, reinforcing its central role in the paradox, while clustering coefficient had minimal negative correlation, suggesting that local cohesion has little impact. \\
+For \textbf{Linkedin}, \textit{PageRank} again emerged as the most significant factor, with stronger correlations than those observed in Facebook. \textit{Degree} correlations were also substantial, reflecting Linkedin's emphasis on direct professional connections. The clustering coefficient showed a slightly more negative correlation, but remained a secondary factor. \\ 
+Finally, in \textbf{Youtube}, \textit{PageRank} remained a strong driver of the \textit{friendship paradox}, although its correlation was weaker than Facebook and Linkedin. \textit{Degree} correlations were less pronounced, indicating different dynamics shaped by content creation and consumption. The clustering coefficient showed an almost negligible correlation, underscoring its limited relevance in this network. \\
+These results highlight the multifaceted nature of the \textit{friendship paradox}, driven primarily by global metrics such as PageRank and degree, while local metrics such as clustering have a more subtle impact.
 
-To quantify these relationships, we used several statistical methods. 
-Linear regression provided a clear model of how the friendship paradox score varies with each metric, offering insights into the strength and direction of these associations. 
-Pearson correlation measured the degree of linear relationships, while Spearman correlation assessed monotonic associations, uncovering potential nonlinear trends. In particular, we excluded \textit{closeness centrality} and \textit{betweenness centrality} from our analysis due to computational constraints, as computing these metrics for large-scale networks such as Facebook, Linkedin, and Youtube was not feasible within this project. \\
-Our results highlight the multifaceted nature of the friendship paradox, driven primarily by global metrics such as PageRank and degree, while local metrics such as clustering have a more subtle impact.
+\section{Conclusions}
+From our analysis we can for certain conclude that the \textit{friendship paradox} exists and it's manifested in social network communities, we also conclude that the \textit{PageRank centrality} is closely related to the \textit{frienship paradox} since it seems to be a good indicator for the \textit{fship\_score}. We can hypothesize that this correlation is due to the fact that both \textit{PageRank} and \textit{fship\_score} are measures of the "popularity of a node", in fact \textit{PageRank} was created aiming to distinguish popular websites and put them at the top of a web search. This correlation seems worth to be analyzed further in the future. \\
+For the \textit{degree} it's similar: there is surely a correlation between \textit{degree} and \textit{fship\_score} but there is also a correlation between \textit{degree} and \textit{PageRank centrality}. What's happening is that probably the correlation we see with the \textit{degree} is a byproduct of the correlation that exists with \textit{PageRank centrality} rendering the \textit{degree} correlation less interesting overall.
 
 \section{Possible improvements}
 With more powerful computational machines and more time there are a few ideas that could be developed to expand on this paper results:
@@ -158,11 +156,11 @@ With more powerful computational machines and more time there are a few ideas th
     \item SSD $\approx$ 3000 MB/s in read and write
 \end{itemize}
 \section*{Contributions}
-We worked together, we belive that the the difference in contribution amount between all of us was negligable, hence we report a contibution of 1/3 for each member.
+We worked together, we belive that the the difference in contribution amount between all of us was negligible, hence we report a contribution of 1/3 for each member.
 \begin{description}[font=\normalfont\itshape]
-    \item[Lavorati Ippolito:] Helped writing the report, helped finding the datasets, researched and presented ideas, Statistical tests, pyhton programming
-    \item[Orsolon Ludovico:] Helped writing the report, gave the main idea about the friendship paradox, formulated of the hypothesis, researched about experiments, python programming, statistical test idea and interpretation
-    \item[Stefani Patrizia:] Helped writing the report, helped finding the datasets, researched on the methods to implement the experiments and relative python functions, implemented some methods for the computation of graph statistics
+    \item[Lavorati Ippolito:] Report, helped finding the datasets, researched and presented ideas, statistical tests, pyhton programming
+    \item[Orsolon Ludovico:] Report, main idea about the friendship paradox, formulated of the hypothesis, researched about experiments, python programming, statistical tests and interpretation
+    \item[Stefani Patrizia:] Report, found datasets, researched on the methods to implement the experiments and relative python functions, implemented some methods for the computation of graph statistics, implemented the configuration logic
 \end{description}
 \begin{thebibliography}{9}
 \bibitem{friendship_paradox}
@@ -172,4 +170,3 @@ than You Do}, The University of Chicago.
 The program can be found on GitHub at \url{https://github.com/OrsolonLudovico/LFN_project.git}
 \end{thebibliography}
 \end{document}
-
