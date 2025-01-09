@@ -8,7 +8,7 @@ def analyze_friendship_paradox_from_csv(file_path):
     # Reading CSV files
     data = pd.read_csv(file_path, index_col=0)
     data.index = data.index.astype(str)  # Normalize the first column to strings
-    data.columns = ['degree', 'betweenness centrality', 'pagerank', 'friendship paradox', 'clustering coefficient']
+    data.columns = ['degree', 'pagerank', 'friendship paradox', 'clustering coefficient']    #  Add Betwenness centrality only for Facebook
 
     # Convert to numeric
     data = data.apply(pd.to_numeric, errors='coerce')
@@ -25,22 +25,22 @@ def analyze_friendship_paradox_from_csv(file_path):
 
     # Extraction of the main columns
     degrees = data['degree'].values
-    betweenness = data['betweenness centrality'].values
+    #betweenness = data['betweenness centrality'].values   #Only for Facebook
     pagerank = data['pagerank'].values
     fship_score = data['friendship paradox'].values
     clustering = data['clustering coefficient'].values
 
     # Statistical analysis of relationships
-    analyze_correlation(degrees, betweenness, pagerank, fship_score, clustering)
+    analyze_correlation(degrees, pagerank, fship_score, clustering)     # Add Betweenness only for Facebook
 
     # Views
-    visualize_data(degrees, betweenness, pagerank, fship_score, clustering)
+    visualize_data(degrees, pagerank, fship_score, clustering)     # Add Betweenness only for Facebook
 
-def analyze_correlation(degrees, betweenness, pagerank, fship_score, clustering):
+def analyze_correlation(degrees, pagerank, fship_score, clustering):  # Add Betweenness only for Facebook
     metrics = {
         'Degrees' : degrees,
-        'page rank' : pagerank,
-        'clustering' : clustering
+        'Page rank' : pagerank,
+        'Clustering' : clustering
     }
 
     print("\nStatistical analysis of advanced metrics:")
@@ -65,7 +65,7 @@ def analyze_correlation(degrees, betweenness, pagerank, fship_score, clustering)
         print(f"  Pearson Correlation: {pearson_corr:.3f} (p={pearson_p:.10e})")
         print(f"  Spearman Correlation: {spearman_corr:.3f} (p={spearman_p:.10e})")
 
-def visualize_data(degrees, betweenness, pagerank, fship_score, clustering):
+def visualize_data(degrees, pagerank, fship_score, clustering):       # Add Betwenness only for Facebook
     plt.figure(figsize=(18, 12))
 
     # Scatter plot 
@@ -108,7 +108,7 @@ def visualize_data(degrees, betweenness, pagerank, fship_score, clustering):
 if __name__ == "__main__":
     # Path CSV file containing data
     #file_path = "results/TestGraph.csv"
-    file_path = "datasets/facebook.csv"  
+    file_path = "datasets/youtube.csv"  
 
     # Analysis of the friendship paradox
     analyze_friendship_paradox_from_csv(file_path)

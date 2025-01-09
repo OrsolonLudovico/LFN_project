@@ -110,13 +110,38 @@ Real vs Random & 0.5 & 0 & 0 & 0\\ \hline
 The p-values are all zero (reject \(H_0\)) except for the artificial graph suggesting that the proportion of outliers are different between the random and the real graphs, this means that the \textit{fship\_score} is probably not due to randomness. We also compared datasets against each other to see if there are common proportions between them, but the p-values are zero for all combinations (facebook-Linkedin, Linkedin-Youtube and Youtube-Facebook) so we conclude that such correlation doesn't exists.
 
 \subsection{\textit{Friendship paradox} correlations}
-The relationship between the friendship paradox and various network metrics reveals intriguing insights into the structural dynamics of social networks. To delve into this phenomenon, we analyzed three critical metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient}, each offering a unique perspective on how the paradox manifests within different regions of a graph.
-\begin{itemize}
-    \item Degree: represents the number of direct connections a node has, is central to the friendship paradox. By its very definition, the paradox arises from comparing a node’s degree with the average degree of its neighbors. Consequently, examining the degree metric allows us to identify the fundamental structural conditions that drive this phenomenon. Higher-degree nodes often exhibit more pronounced friendship paradox scores, as they are typically connected to similarly high-degree neighbors, skewing the averages upward.
-    \item PageRank: provides a broader measure of a node’s importance within the network. Unlike degree, which considers only direct connections, PageRank evaluates both the quantity and quality of a node’s connections, factoring in the influence of neighbors. In our analysis, we observed a strong positive relationship between PageRank and the friendship paradox score. This suggests that influential nodes, those with high PageRank, are disproportionately affected by the paradox, likely due to their role as hubs within the network.
-    \item Clustering coefficient: adds another layer of complexity to our understanding. This metric measures the extent to which a node’s neighbors are interconnected, forming tightly knit clusters. Interestingly, our findings indicate a weak negative correlation between clustering coefficient and the friendship paradox score. Nodes embedded in highly clustered regions of the network appear to experience a dampened paradox effect, potentially because the interconnected nature of their neighbors reduces variability in degrees.
-\end{itemize}
-To quantify these relationships, we employed a combination of statistical methods. \textit{Linear regression} provided a clear view of how the friendship paradox score changes with respect to each metric, while \textit{Pearson} and \textit{Spearman} correlations offered complementary perspectives on the strength and nature of these associations. 
+
+The \textit{friendship paradox} reveals intriguing insights into the structural dynamics of social networks. To explore this phenomenon, we analyzed three key metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient}, each of which offers a unique perspective on how the paradox manifests. 
+The results varied across different social networks, as shown in \textit{Table 4}, reflecting their distinct structures. \\
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & Facebook & Linkedin & Youtube \\ \hline
+        \textbf{Degree Correlation} & & & \\  \hline
+        Pearson & 0.784 & 0.728 & 0.575 \\ \hline
+        Spearman  & 0.747 & 0.865 & 0.185 \\ \hline
+
+        \textbf{PageRank Correlation} & & &\\ \hline
+        Pearson & 0.898 & 0.967 & 0.836 \\ \hline
+        Spearman  & 0.906 & 0.980 & 0.743 \\ \hline
+
+        \textbf{Clustering Correlation} & & &\\ \hline
+        Pearson & -0.106 & -0.355 & -0.003 \\ \hline
+        Spearman  & 0.111 & -0.230 & 0.064 \\ \hline
+    \end{tabular}
+    \caption{Metrics correlation}
+\end{table} 
+
+In Facebook, PageRank showed the strongest correlation with the friendship paradox, underscoring the influence of highly connected hubs. Degree also showed a significant positive correlation, reinforcing its central role in the paradox, while clustering coefficient had minimal negative correlation, suggesting that local cohesion has little impact. \\
+For Linkedin, PageRank again emerged as the most significant factor, with stronger correlations than those observed in Facebook. Degree correlations were also substantial, reflecting Linkedin's emphasis on direct professional connections. The clustering coefficient showed a slightly more negative correlation, but remained a secondary factor. \\ 
+In youtube, PageRank remained a strong driver of the friendship paradox, although its correlation was weaker than Facebook and Linkedin. Degree correlations were less pronounced, indicating different dynamics shaped by content creation and consumption. The clustering coefficient showed an almost negligible correlation, underscoring its limited relevance in this network. \\
+
+To quantify these relationships, we used several statistical methods. 
+Linear regression provided a clear model of how the friendship paradox score varies with each metric, offering insights into the strength and direction of these associations. 
+Pearson correlation measured the degree of linear relationships, while Spearman correlation assessed monotonic associations, uncovering potential nonlinear trends. In particular, we excluded \textit{closeness centrality} and \textit{betweenness centrality} from our analysis due to computational constraints, as computing these metrics for large-scale networks such as Facebook, Linkedin, and Youtube was not feasible within this project. \\
+Our results highlight the multifaceted nature of the friendship paradox, driven primarily by global metrics such as PageRank and degree, while local metrics such as clustering have a more subtle impact.
 
 \section{Possible improvements}
 With more powerful computational machines and more time there are a few ideas that could be developed to expand on this paper results:
