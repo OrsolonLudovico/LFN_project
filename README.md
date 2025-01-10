@@ -1,7 +1,7 @@
 # Learning from networks
 ## Prerequisites
-Python &ge 3.10 installed
-R preferably &ge 4.4.2 (just for a few scripts)
+Python version ≥ 3.10 <br>
+R version ≥ 4.4.2 (mostly optional)
 ## Installation
 1. Clone repository from [github](https://github.com/OrsolonLudovico/LFN_project)
 2. pip install networkx
