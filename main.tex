@@ -111,7 +111,7 @@ It's important to check if the \textit{frienship paradox} is related to some oth
     \item \textit{Pearson correlation} measures the degree of linear relationships
     \item \textit{Spearman correlation} assesses monotonic associations, uncovering potential nonlinear trends.
 \end{itemize}
-We also tried to test \textit{closeness} and \textit{betweenness centrality} but computing these metrics (even approximated) for large-scale networks such as Facebook, Linkedin, and Youtube requires too much computational power, not available for us; we hence marked them as unfeasible. \\
+We also tried to test \textit{closeness} and \textit{betweenness centrality} but computing these metrics (even approximated) for large-scale networks such as Facebook, Linkedin, and Youtube requires too much computational power, not available to us; we hence marked them as unfeasible. \\
 Additionally, although linear regression is a common method for modeling relationships between variables, it was not applied in this study.
 Instead, we relied on Pearson and Spearman correlations, which have proven to be more effective in quantifying and understanding the associations between the friendship paradox and the selected metrics. These methods have revealed the strength and nature of associations while ensuring statistical significance. \\
 The results presented in this section were obtained using the code implemented in the file \textit{analysis.py}; they are shown in the following table: \\
@@ -136,8 +136,8 @@ The results presented in this section were obtained using the code implemented i
     \caption{Metrics correlation}
 \end{table} 
 
-Each value represents the correlation coefficient between the friendship paradox score and the corresponding metric. Values closer to 1 or -1 indicate stronger correlations, with positive values showing direct relationships and negative values indicating inverse relationships.
-For instance, in \textit{Facebook}, PageRank has the strongest positive correlation with the friendship paradox (Pearson = 0.898, Spearman = 0.906), highlighting the influence of hubs in the network. Conversely, clustering coefficients generally show weak or negligible correlations, emphasizing their limited impact.
+Each value represents the correlation coefficient between the \textit{fship\_score} and the corresponding metric. Values closer to 1 or -1 indicate stronger correlations, with positive values showing direct relationships and negative values indicating inverse relationships.
+For instance, in \textit{Facebook}, PageRank has the strongest positive correlation with the \textit{fship\_score} (Pearson = 0.898, Spearman = 0.906), highlighting the influence of hubs in the network. Conversely, the clustering coefficient generally shows weak or negligible correlations, emphasizing it's limited impact.
 
 In \textbf{Facebook}, \textit{PageRank} showed the strongest correlation with the \textit{friendship paradox}, underscoring the influence of highly connected hubs. \textit{Degree} also showed a significant positive correlation, reinforcing its central role in the paradox, while clustering coefficient had minimal negative correlation, suggesting that local cohesion has little impact. \\
 For \textbf{Linkedin}, \textit{PageRank} again emerged as the most significant factor, with stronger correlations than those observed in Facebook. \textit{Degree} correlations were also substantial, reflecting Linkedin's emphasis on direct professional connections. The clustering coefficient showed a slightly more negative correlation, but remained a secondary factor. \\ 
@@ -146,11 +146,9 @@ These results highlight the multifaceted nature of the \textit{friendship parado
 
 \section{Conclusions}
 From our analysis we can conclude that the \textit{friendship paradox} exists and it's manifested in social network communities; we also conclude that the \textit{PageRank centrality} is closely related to the \textit{frienship paradox} since it seems to be a good indicator for the \textit{fship\_score}. We can hypothesize that this correlation is due to the fact that both \textit{PageRank} and \textit{fship\_score} are measures of the "popularity of a node", in fact \textit{PageRank} was created aiming to distinguish popular websites and put them at the top of a web search. This correlation seems worth to be analyzed further in the future. \\
-%For the \textit{degree} it's similar: there is surely a correlation between \textit{degree} and \textit{fship\_score} but there is also a correlation between \textit{degree} and \textit{PageRank centrality}. What's happening is that probably the correlation we see with the \textit{degree} is a byproduct of the correlation that exists with \textit{PageRank centrality} rendering the \textit{degree} correlation less interesting overall.
-The \textit{degree} also showed a significant correlation with the \textit{friendship paradox} score, but its role appears less distinct. 
-A possible explanation is that the \textit{degree}'s correlation is partly a byproduct of its relationship with \textit{PageRank centrality}, which reflects the broader structural dynamics of the network. This interdependence renders the \textit{degree}'s correlation somewhat less insightful when compared to \textit{PageRank}. \\
+For the \textit{degree} we have a similar situation: there is surely a correlation between \textit{degree} and \textit{fship\_score} but there is also a correlation between \textit{degree} and \textit{PageRank centrality}. What's happening is that probably the correlation we see with the \textit{degree} is a byproduct of the correlation that exists with \textit{PageRank centrality} rendering the \textit{degree} correlation less interesting overall.\\
 Finally, the \textit{clustering coefficient} exhibited weak or negligible correlations, suggesting that local cohesiveness has minimal influence on the phenomenon. 
-This reinforces the idea that global metrics like \textit{PageRank} and \textit{degree} are the primary drivers of the \textit{friendship paradox}.
+This reinforces the idea that global metrics like \textit{PageRank} are the primary drivers of the \textit{friendship paradox} hence we suspect that other centrality measures will be related to it as well.
 
 \section{Possible improvements}
 With more powerful computational machines and more time there are a few ideas that could be developed to expand on this paper results:
