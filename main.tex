@@ -81,7 +81,7 @@ Random & 0.3636 & 0.4086 & 0.3556 & 0.3544 \\ \hline
 \end{table} 
 \\
 
-We can immediately see that the \textit{frienship paradox} is true for both real and random graphs but we can also see that it is more accentuated on the real graphs than on the random ones: this suggests that the \textit{friendship paradox} is a characteristic of real "social network" graphs even though it can be also present in random graphs to some degree. Furthermore, we can see that the paradox is more accentuated on Youtube and less on Linkedin as expected. From the data, the random graphs seem to have a different proportion of outliers than the real graphs (H1), to verify this hypothesis we performed the z-test on the values in the above table using [real graph - random corresponding graph] pairs.
+We can immediately see that the \textit{friendship paradox} is true for both real and random graphs but we can also see that it is more accentuated on the real graphs than on the random ones: this suggests that the \textit{friendship paradox} is a characteristic of real "social network" graphs even though it can be also present in random graphs to some degree. Furthermore, we can see that the paradox is more accentuated on Youtube and less on Linkedin as expected. From the data, the random graphs seem to have a different proportion of outliers than the real graphs (H1), to verify this hypothesis we performed the z-test on the values in the above table using [real graph - random corresponding graph] pairs.
 \[z = \frac{p_1 - p_2}{\sqrt{p_{comb} (1 - p_{comb}) \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}}\]
 where:
 \[n_i = \textit{number of nodes in graph i}\]
@@ -105,7 +105,7 @@ The p-values are all zero (reject \(H_0\)) except for the artificial graph sugge
 
 \subsection{\textit{Friendship paradox} correlations}
 
-It's important to check if the \textit{frienship paradox} is related to some other metric of the graph. We tried to analyze three key metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient} using:
+It's important to check if the \textit{friendship paradox} is related to some other metric of the graph. We tried to analyze three key metrics: \textit{degree}, \textit{PageRank}, and \textit{clustering coefficient} using:
 \begin{itemize}
     %\item \textit{Linear regression} provides a clear model of how the friendship paradox score varies with each metric, offering insights into the strength and direction of these associations.
     \item \textit{Pearson correlation} measures the degree of linear relationships
@@ -145,7 +145,7 @@ Finally, in \textbf{Youtube}, \textit{PageRank} remained a strong driver of the 
 These results highlight the multifaceted nature of the \textit{friendship paradox}, driven primarily by global metrics such as PageRank and degree, while local metrics such as clustering have a more subtle impact.
 
 \section{Conclusions}
-From our analysis we can conclude that the \textit{friendship paradox} exists and it's manifested in social network communities; we also conclude that the \textit{PageRank centrality} is closely related to the \textit{frienship paradox} since it seems to be a good indicator for the \textit{fship\_score}. We can hypothesize that this correlation is due to the fact that both \textit{PageRank} and \textit{fship\_score} are measures of the "popularity of a node", in fact \textit{PageRank} was created aiming to distinguish popular websites and put them at the top of a web search. This correlation seems worth to be analyzed further in the future. \\
+From our analysis we can conclude that the \textit{friendship paradox} exists and it's manifested in social network communities; we also conclude that the \textit{PageRank centrality} is closely related to the \textit{friendship paradox} since it seems to be a good indicator for the \textit{fship\_score}. We can hypothesize that this correlation is due to the fact that both \textit{PageRank} and \textit{fship\_score} are measures of the "popularity of a node", in fact \textit{PageRank} was created aiming to distinguish popular websites and put them at the top of a web search. This correlation seems worth to be analyzed further in the future. \\
 For the \textit{degree} we have a similar situation: there is surely a correlation between \textit{degree} and \textit{fship\_score} but there is also a correlation between \textit{degree} and \textit{PageRank centrality}. What's happening is that probably the correlation we see with the \textit{degree} is a byproduct of the correlation that exists with \textit{PageRank centrality} rendering the \textit{degree} correlation less interesting overall.\\
 Finally, the \textit{clustering coefficient} exhibited weak or negligible correlations, suggesting that local cohesiveness has minimal influence on the phenomenon. 
 This reinforces the idea that global metrics like \textit{PageRank} are the primary drivers of the \textit{friendship paradox} hence we suspect that other centrality measures will be related to it as well.
@@ -165,9 +165,9 @@ With more powerful computational machines and more time there are a few ideas th
     \item SSD $\approx$ 3000 MB/s in read and write
 \end{itemize}
 \section*{Contributions}
-We worked together, we belive that the the difference in contribution amount between all of us was negligible, hence we report a contribution of 1/3 for each member.
+We worked together and believe that the the difference in contribution amount between all of us was negligible, hence we report a contribution of 1/3 for each member.
 \begin{description}[font=\normalfont\itshape]
-    \item[Lavorati Ippolito:] Report, helped finding the datasets, researched and presented ideas, statistical tests and interpretation, pyhton programming
+    \item[Lavorati Ippolito:] Report, helped finding the datasets, researched and presented ideas, statistical tests and interpretation, python programming
     \item[Orsolon Ludovico:] Report, main idea about the friendship paradox, formulated of the hypothesis, researched about experiments, python programming, statistical tests and interpretation
     \item[Stefani Patrizia:] Report, found datasets, researched on the methods to implement the experiments and relative python functions, implemented some methods for the computation of graph statistics, implemented the configuration logic
 \end{description}
